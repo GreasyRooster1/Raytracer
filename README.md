@@ -1,2 +1,2 @@
 # Raytracer
-My attempt at making a raytraces in Java
+My attempt at making a raytracer in Java
