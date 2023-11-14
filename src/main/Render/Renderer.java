@@ -1,7 +1,8 @@
 package main.Render;
 
 import main.Main;
-import main.World.Camera;
+import main.Util.Ray;
+import main.World.Objects.Camera;
 import processing.core.PImage;
 
 import static processing.core.PApplet.floor;
@@ -21,8 +22,12 @@ public class Renderer {
 
     private static int renderPixel(int i) {
         float x = i%Main.w;
-        float y = floor((float)i/Main.h);
+        float y = floor((float)i/Main.w);
 
-        return Main.app.color(x/Main.app.width,y/Main.app.height,0);
+        float vx = (Main.w*(x/Main.w))-Main.w/2f;
+        float vy = (Main.h*(y/Main.h))-Main.h/2f;
+        Ray ray = new Ray(1,vx,vy);
+
+        return ray.evaluateColor();
     }
 }

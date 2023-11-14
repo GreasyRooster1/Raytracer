@@ -1,22 +1,49 @@
 package main.Util;
 
 import main.Main;
+import main.Render.Renderer;
+import main.World.World;
+import main.World.WorldObject;
 
 import static java.lang.Math.sqrt;
 
 public class Ray {
     public float x,y,z;
     public Ray(float x ,float y,float z){
-
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
-    public int rgb(){
-        Ray norm = normalized();
-        return Main.app.color(norm.x,norm.y,norm.z);
-    }
-    public Ray normalized(){
+    
+    //Methods
+    
+    public Ray normalize() {
         return new Ray(x/mag(),y/mag(),z/mag());
     }
     public float mag(){
         return (float) sqrt((x * x) + (y * y) + (z * z));
+    }
+    public float dot(Ray ray) {
+        return dot(this,ray);
+    }
+    
+    //Static Methods
+    
+    public static Ray sub(Ray a,Ray b){
+        return new Ray(a.x-b.x,a.y-b.y,a.z-b.z);
+    }
+    public static float dot(Ray r1,Ray r2){
+        return r1.x*r2.x+r1.y*r2.y;
+    }
+    
+    //Light
+    
+    public int evaluateColor() {
+        for(WorldObject o:World.objects){
+            if(o.isColliding(this)){
+                return o.albedo;
+            }
+        }
+        return World.backgroundColor;
     }
 }
