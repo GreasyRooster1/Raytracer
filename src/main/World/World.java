@@ -21,7 +21,7 @@ public class World {
         add(new Sphere(2.01f,1,0,1.999f).setAlbedo(1,0,1));
         add(new Sphere(2,0,0,1.999f).setAlbedo(1,0,0));
 
-        addLight(new PointLight(2f,0f,2f));
+        addLight(new PointLight(2.001f,0f,1f));
     }
 
     public static void add(WorldObject object){

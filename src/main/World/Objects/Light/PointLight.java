@@ -12,12 +12,15 @@ public class PointLight extends Light {
 
     @Override
     public float evaluateLightIntensity(Point r) {
-//        Ray toLight = new Ray();
-//        for(WorldObject o: World.objects){
-//            if(o.isColliding(toLight)) {
-//
-//            }
-//        }
+        Ray toLight = Ray.sub(asVec(),r.asVec());
+        r=r.moveAlongRay(toLight,1E-45f);
+        toLight = Ray.sub(asVec(),r.asVec());
+
+        for(WorldObject o: World.objects){
+            if(o.isColliding(toLight)) {
+                return 0.3f;
+            }
+        }
         return 0.75f;
     }
 }

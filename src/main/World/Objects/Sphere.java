@@ -1,8 +1,11 @@
 package main.World.Objects;
 
+import main.Util.Point;
 import main.Util.Ray;
 import main.World.World;
 import main.World.WorldObject;
+
+import static processing.core.PApplet.sqrt;
 
 public class Sphere extends WorldObject {
     public Sphere(float x, float y, float z, float radius) {
@@ -11,15 +14,36 @@ public class Sphere extends WorldObject {
 
     @Override
     public boolean isColliding(Ray ray) {
-        Ray rayDirection = ray.normalize();
-        Ray oc = Ray.sub(World.camera.asVec(), asVec());
-        float a = rayDirection.dot(rayDirection);
-        float b = 2.0f * oc.dot(rayDirection);
-        float c = oc.dot(oc) - (size * size);
+        return !(pointOfCollision(ray)==null);
+    }
 
-        // Find the discriminant of the quadratic equation
-        float discriminant = b*b - 4*a*c;
+    @Override
+    public Point pointOfCollision(Ray ray) {
+        Ray p0 = World.camera.asVec();
+        Ray d = ray.normalize();
+        Ray c = this.asVec();
+        float r = size;
 
-        return discriminant >= 0;
+        Ray e = c.sub(p0);
+        // Using Length here would cause floating point error to creep in
+        float Esq = e.mag()*e.mag();
+        float a = Ray.dot(e, d);
+        float b = sqrt(Esq - (a * a));
+        float f = sqrt((r * r) - (b * b));
+
+        float t;
+        // No collision
+        if (r * r - Esq + a * a < 0f) {
+            t= -1; // -1 is invalid.
+            return null;
+        }
+        // Ray is inside
+        else if (Esq < r * r) {
+            t= a + f; // Just reverse direction
+        }
+        // else Normal intersection
+        t = a - f;
+        Ray norm = ray.normalize();
+        return new Point(norm.x*t,norm.y*t,norm.z*t);
     }
 }

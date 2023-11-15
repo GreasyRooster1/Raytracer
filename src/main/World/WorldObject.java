@@ -13,11 +13,14 @@ public class WorldObject {
     public float z;
     public float size;
     public Color albedo;
+    public long id;
+
     protected WorldObject(float x, float y, float z, float size){
         this.x = x;
         this.y = y;
         this.z = z;
         this.size = size;
+        this.id = (long) Main.app.random(-Float.NEGATIVE_INFINITY,Float.POSITIVE_INFINITY);
     }
     public WorldObject setAlbedo(int r, int g, int b){
         albedo = new Color(r,g,b);
@@ -27,9 +30,8 @@ public class WorldObject {
 
         return false;
     }
-    public Point[] pointOfCollision(){
-
-        return new Point[0];
+    public Point pointOfCollision(Ray ray){
+        return new Point(0,0,0);
     }
     public Ray asVec(){
         return new Ray(x,y,z);

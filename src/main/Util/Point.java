@@ -7,4 +7,16 @@ public class Point {
         this.y = y;
         this.z = z;
     }
+    public Ray asVec(){
+        return new Ray(x,y,z);
+    }
+
+    public boolean eq(Point p) {
+        return (p.x==x)&&(p.y==y)&&(p.z==z);
+    }
+
+    public Point moveAlongRay(Ray toLight, float v) {
+        Ray norm = toLight.normalize();
+        return new Point(norm.x*v,norm.y*v,norm.z*v);
+    }
 }
