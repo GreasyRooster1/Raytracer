@@ -2,6 +2,7 @@ package main.Util;
 
 import main.Main;
 import main.Render.Renderer;
+import main.World.Objects.Light.Light;
 import main.World.World;
 import main.World.WorldObject;
 
@@ -33,7 +34,7 @@ public class Ray {
         return new Ray(a.x-b.x,a.y-b.y,a.z-b.z);
     }
     public static float dot(Ray r1,Ray r2){
-        return r1.x*r2.x+r1.y*r2.y;
+        return (r1.x*r2.x)+(r1.y*r2.y)+(r1.z*r2.z);
     }
     
     //Light
@@ -41,7 +42,11 @@ public class Ray {
     public int evaluateColor() {
         for(WorldObject o:World.objects){
             if(o.isColliding(this)){
-                return o.albedo;
+                Color out = o.albedo;
+                for(Light l:World.lights) {
+                    out = o.albedo.mult(out,l.evaluateLightIntensity(new Point(0,0,0)));
+                }
+                return out.get();
             }
         }
         return World.backgroundColor;
