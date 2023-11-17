@@ -56,4 +56,8 @@ public class Ray {
         }
         return World.backgroundColor;
     }
+
+    public String toString(){
+        return "<" + x + ", " + y + ", " + z + ">";
+    }
 }

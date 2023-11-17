@@ -45,11 +45,11 @@ public class Sphere extends WorldObject {
         // Ray is inside
         else if (Esq < r * r) {
             t= a + f; // Just reverse direction\
-            return new Point(ray.x, ray.y,ray.z);
+            return new Point(p0.x+ray.x, p0.y+ray.y,p0.z+ray.z);
         }
         // else Normal intersection
 
         Ray norm = ray.normalize();
-        return new Point(norm.x*t,norm.y*t,norm.z*t);
+        return new Point(p0.x+norm.x*t,p0.y+norm.y*t,p0.z+norm.z*t);
     }
 }

@@ -22,7 +22,7 @@ public class WorldObject {
         this.size = size;
         this.id = (long) Main.app.random(-Float.NEGATIVE_INFINITY,Float.POSITIVE_INFINITY);
     }
-    public WorldObject setAlbedo(int r, int g, int b){
+    public WorldObject setAlbedo(float r, float g, float b){
         albedo = new Color(r,g,b);
         return this;
     }

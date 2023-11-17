@@ -29,7 +29,6 @@ public class Main extends PApplet {
     public void draw(){
         background(1,0,1);
         image(screen,0,0,width,height);
-        fill(frameCount%2);
     }
 
     public void keyPressed(){

@@ -33,17 +33,12 @@ public class Renderer {
             swapped = false;
             for (j = 0; j < n - i - 1; j++) {
                 if (arr[j].distFromCam() > arr[j + 1].distFromCam()) {
-
-                    // Swap arr[j] and arr[j+1]
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
                     swapped = true;
                 }
             }
-
-            // If no two elements were
-            // swapped by inner loop, then break
             if (!swapped) {
                 break;
             }

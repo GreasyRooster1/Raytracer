@@ -19,4 +19,8 @@ public class Point {
         Ray norm = toLight.normalize();
         return new Point(x+norm.x*v,y+norm.y*v,z+norm.z*v);
     }
+
+    public String toString(){
+        return "<" + x + ", " + y + ", " + z + ">";
+    }
 }
