@@ -1,6 +1,7 @@
 package main.World.Objects;
 
 import main.Main;
+import main.Util.Point;
 import main.Util.Ray;
 public class Camera {
     public float x,y,z;
@@ -13,4 +14,7 @@ public class Camera {
         return new Ray(x,y,z);
     }
 
+    public Point asPoint() {
+        return new Point(x,y,z);
+    }
 }

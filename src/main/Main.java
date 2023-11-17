@@ -12,7 +12,7 @@ public class Main extends PApplet {
     public static int h;
     public PImage screen;
     public void settings() {
-        size(300, 300);
+        size(500, 500);
         Main.setApp(this);
     }
     public void setup(){

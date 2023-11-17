@@ -1,6 +1,7 @@
 package main.Render;
 
 import main.Main;
+import main.Util.Point;
 import main.Util.Ray;
 import main.World.Objects.Camera;
 import main.World.World;
@@ -56,7 +57,7 @@ public class Renderer {
 
         float vx = World.camera.y+(Main.w*(x/Main.w))-Main.w/2f;
         float vy = World.camera.z+(Main.h*(y/Main.h))-Main.h/2f;
-        Ray ray = new Ray(World.camera.x+1,vx,vy);
+        Ray ray = new Ray(World.camera.x+25,vx/10,vy/10);
 
         return ray.evaluateColor();
     }

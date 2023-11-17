@@ -17,6 +17,6 @@ public class Point {
 
     public Point moveAlongRay(Ray toLight, float v) {
         Ray norm = toLight.normalize();
-        return new Point(norm.x*v,norm.y*v,norm.z*v);
+        return new Point(x+norm.x*v,y+norm.y*v,z+norm.z*v);
     }
 }

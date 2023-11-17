@@ -16,10 +16,15 @@ public class Sphere extends WorldObject {
     public boolean isColliding(Ray ray) {
         return !(pointOfCollision(ray)==null);
     }
-
+    public boolean isColliding(Ray ray,Point p) {
+        return !(pointOfCollision(ray,p)==null);
+    }
     @Override
     public Point pointOfCollision(Ray ray) {
-        Ray p0 = World.camera.asVec();
+        return pointOfCollision(ray,World.camera.asPoint());
+    }
+    public Point pointOfCollision(Ray ray,Point p) {
+        Ray p0 = p.asVec();
         Ray d = ray.normalize();
         Ray c = this.asVec();
         float r = size;
@@ -31,7 +36,7 @@ public class Sphere extends WorldObject {
         float b = sqrt(Esq - (a * a));
         float f = sqrt((r * r) - (b * b));
 
-        float t;
+        float t = a - f;
         // No collision
         if (r * r - Esq + a * a < 0f) {
             t= -1; // -1 is invalid.
@@ -39,10 +44,11 @@ public class Sphere extends WorldObject {
         }
         // Ray is inside
         else if (Esq < r * r) {
-            t= a + f; // Just reverse direction
+            t= a + f; // Just reverse direction\
+            return new Point(ray.x, ray.y,ray.z);
         }
         // else Normal intersection
-        t = a - f;
+
         Ray norm = ray.normalize();
         return new Point(norm.x*t,norm.y*t,norm.z*t);
     }

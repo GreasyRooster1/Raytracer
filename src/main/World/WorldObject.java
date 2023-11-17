@@ -30,7 +30,14 @@ public class WorldObject {
 
         return false;
     }
+    public boolean isColliding(Ray ray,Point p){
+
+        return false;
+    }
     public Point pointOfCollision(Ray ray){
+        return new Point(0,0,0);
+    }
+    public Point pointOfCollision(Ray ray,Point p){
         return new Point(0,0,0);
     }
     public Ray asVec(){

@@ -17,11 +17,11 @@ public class World {
 
     public static void createWorld(){
         //COLOR IS UV
-        add(new Sphere(2.02f,0,0,1.999f).setAlbedo(0,0,1));
-        add(new Sphere(2.01f,1,0,1.999f).setAlbedo(1,0,1));
-        add(new Sphere(2,0,0,1.999f).setAlbedo(1,0,0));
+        add(new Sphere(98,0,0,20).setAlbedo(0,0,1));
+        add(new Sphere(101,40,0,20).setAlbedo(1,0,1));
+        add(new Sphere(100,0,40,20).setAlbedo(1,0,0));
 
-        addLight(new PointLight(2.001f,0f,1f));
+        addLight(new PointLight(75,0,0));
     }
 
     public static void add(WorldObject object){
